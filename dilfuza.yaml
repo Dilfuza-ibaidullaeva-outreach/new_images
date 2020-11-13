@@ -99,29 +99,28 @@ parameters:
       Pass through a default timeout if your Docker build does not output
       anything for more than 10 minutes.
 jobs:
+  build-image:
+    registry-url: <<parameters.registry-url>>
+    google-project-id: <<parameters.google-project-id>>
+    image: <<parameters.image>>
+    tag: <<parameters.tag>>
+    path: <<parameters.path>>
+    extra_build_args: <<parameters.extra_build_args>>
+    attach-workspace: <<parameters.attach-workspace>>
+    workspace-root: <<parameters.workspace-root>>
+    docker-context: <<parameters.docker-context>>
+    no_output_timeout: <<parameters.no_output_timeout>>
+ gcr-auth:
+    google-project-id: <<parameters.google-project-id>>
+    google-compute-zone: <<parameters.google-compute-zone>>
+    gcloud-service-key: <<parameters.gcloud-service-key>>
   
-  - gcr-auth:
-      google-project-id: <<parameters.google-project-id>>
-      google-compute-zone: <<parameters.google-compute-zone>>
-      gcloud-service-key: <<parameters.gcloud-service-key>>
+      
 
-  - build-image:
-      registry-url: <<parameters.registry-url>>
-      google-project-id: <<parameters.google-project-id>>
-      image: <<parameters.image>>
-      tag: <<parameters.tag>>
-      dockerfile: <<parameters.dockerfile>>
-      path: <<parameters.path>>
-      extra_build_args: <<parameters.extra_build_args>>
-      attach-workspace: <<parameters.attach-workspace>>
-      workspace-root: <<parameters.workspace-root>>
-      docker-context: <<parameters.docker-context>>
-      no_output_timeout: <<parameters.no_output_timeout>>
-
-  - push-image:
-      registry-url: <<parameters.registry-url>>
-      google-project-id: <<parameters.google-project-id>>
-      image: <<parameters.image>>
+  push-image:
+     registry-url: <<parameters.registry-url>>
+     google-project-id: <<parameters.google-project-id>>
+     image: <<parameters.image>>
       tag: <<parameters.tag>> 
       digest-path: <<parameters.digest-path>> 
 
