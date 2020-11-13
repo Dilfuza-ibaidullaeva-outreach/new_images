@@ -98,12 +98,12 @@ parameters:
     description: >
       Pass through a default timeout if your Docker build does not output
       anything for more than 10 minutes.
-steps:
+jobs:
   - checkout
 
   - when:
       condition: <<parameters.setup-remote-docker>>
-      steps:
+      jobs:
         - setup_remote_docker:
             docker_layer_caching: <<parameters.use-docker-layer-caching>>
 
@@ -135,6 +135,7 @@ steps:
 workflows:
   workflow:
     jobs:
+    
       - gcr-auth
       - build-image
       - push-image
