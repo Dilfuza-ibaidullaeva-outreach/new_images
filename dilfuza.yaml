@@ -99,10 +99,7 @@ parameters:
       Pass through a default timeout if your Docker build does not output
       anything for more than 10 minutes.
 jobs:
-  - checkout
-
   
-
   - gcr-auth:
       google-project-id: <<parameters.google-project-id>>
       google-compute-zone: <<parameters.google-compute-zone>>
